@@ -1,4 +1,4 @@
-from titanic import model, data
+from titanic import models, data
 import pandas as pd
 import os
 from sklearn.metrics import accuracy_score
@@ -20,12 +20,12 @@ def test_run_logistic_regression():
         .pipe(data.extract_title)
     )
 
-    X_train, X_test, y_train, y_test = model.data_preparation(processed_data,
+    X_train, X_test, y_train, y_test = models.data_preparation(processed_data,
                                                                test_size=0.2,
                                                                random_state=0)
 
-    majority_vote = model.run_majority_vote(X_train, X_test, y_train, y_test)
-    linear_regression = model.run_logistic_regression(X_train, X_test, y_train, y_test)
+    majority_vote = models.run_majority_vote(X_train, X_test, y_train, y_test)
+    linear_regression = models.run_logistic_regression(X_train, X_test, y_train, y_test)
 
     accuracy_majority_vote = accuracy_score(y_true=y_test, y_pred=majority_vote.predict(X_test))
     accuracy_linear_regression = accuracy_score(y_true=y_test, y_pred=linear_regression.predict(X_test))
